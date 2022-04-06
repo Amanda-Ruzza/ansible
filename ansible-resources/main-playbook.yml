@@ -1,0 +1,53 @@
+---
+- hosts: web_servers
+  become: true
+  tasks:
+    - name: Update the apt-get (yum in centos) repository #this name can be anything to help me understand the task
+      apt:
+        update_cache: yes
+
+    - name: Update repo and Install nginx
+      apt: 
+        name: "nginx"
+        state: present # This means that if the application has been installed, Ansible will not overwrite it
+    
+    - name: Create folder for website
+      file:
+        path: "/var/www/{{ website_name }}"
+        state: directory
+
+    - name: Delete sites-enable and sites-available files
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - "/etc/nginx/site-enabled/default"
+        - "/etc/nginx/site-available/default"
+        
+    - name: Add webpage to servers
+      copy:
+        src: "files/index.html"
+        dest:  "/var/www/{{ website_name}}/index.html"
+
+    - name: Configure nginx with new config file
+      template:
+        src: "templates/default.tpl"
+        dest: "/etc/nginx/sites-available/{{ website_name }}"
+    
+    - name: Create symlink for config file
+      file:
+        src: "/etc/nginx/sites-available/{{ website_name }}"
+        dest: "/etc/nginx/sites-enabled/{{ website_name }}"
+        state: link
+      notify:
+        - Restart nginx
+
+  handlers:
+    - name: Restart nginx service
+      service:
+        name: "nginx"
+        state: restarted
+
+  #handlers:
+    #- name: 
+    
