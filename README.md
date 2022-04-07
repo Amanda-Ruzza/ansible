@@ -11,3 +11,5 @@ This Servers have SSH, the security group needs to have port 80 and 22 enabled
 We used an AMI Ubuntu Server:
 ubuntu-eks/k8s_1.18/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20220405
 
+
+On the second part of the exercise, we worked on conifiguring each EC2 server's with our on website message in HTML/CSS
