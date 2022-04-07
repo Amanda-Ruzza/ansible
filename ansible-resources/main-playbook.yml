@@ -12,10 +12,10 @@
         state: present # This means that if the application has been installed, Ansible will not overwrite it
 
    # DON'T START THESE STEPS UNTIL I RUN THE ANSIBLE PLAYBOOK WITH THE WEBSERVERS, AND THE NGINX INSTALLATION [LINES 1 - 12] 
-  #   - name: Create folder for website
-  #     file:
-  #       path: "/var/www/{{ website_name }}"
-  #       state: directory
+    - name: Create folder for website
+      file:
+        path: "/var/www/demo-website"  #{{ website_name }}"
+        state: directory
 
   #   - name: Delete sites-enable and sites-available files
   #     file:
