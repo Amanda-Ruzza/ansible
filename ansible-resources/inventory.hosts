@@ -9,8 +9,10 @@
 [charlie]
 54.172.117.207
 
-[web_servers:children]
-#finish this
+[web_servers:children] #This is a 'group of groups'
+alpha
+beta
+charlie
 
 [web_servers:vars] #These are variables for the group of web servers
 ansible_user=ubuntu
