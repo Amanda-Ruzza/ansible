@@ -1,13 +1,15 @@
 #This where I put all the servers that I'm going to use in my code
 [alpha]
-54.174.193.10
+54.82.207.92
+34.229.104.247
+54.196.18.120
+54.89.1.120
 
 [beta]
-50.17.99.135
-3.91.77.243
+
 
 [charlie]
-54.172.117.207
+
 
 [web_servers:children] #This is a 'group of groups'
 alpha
