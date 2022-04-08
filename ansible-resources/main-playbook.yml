@@ -22,8 +22,8 @@
         path: "{{ item }}"
         state: absent
       with_items: # This is how you do an ansible loop
-        - "/etc/nginx/site-enabled/default"
-        - "/etc/nginx/site-available/default"
+        - "/etc/nginx/sites-enabled/default"
+        - "/etc/nginx/sites-available/default"
       notify:
         - Restart nginx  
 
@@ -37,7 +37,7 @@
     - name: Configure nginx with the new config file
       template:
         src: "default.tpl"
-        dest: "/etc/nginx/sites-available/{ website_name }}"
+        dest: "/etc/nginx/sites-available/{{ website_name }}"
       notify:
         - Restart nginx
            
